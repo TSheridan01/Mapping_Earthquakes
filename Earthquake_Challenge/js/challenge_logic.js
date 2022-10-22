@@ -31,7 +31,7 @@ let map = L.map('mapid', {
 });
 
 
-// DELIVERABLE 3
+// Deliverable 3
 
 // Create a base layer that holds all three maps.
 let baseMaps = {
@@ -41,7 +41,7 @@ let baseMaps = {
 };
 
 
-// DELIVERABLE 1 and 2
+// Deliverable 1 and 2
 
 // 1. Add a 2nd layer group for the tectonic plate data.
 let allEarthquakes = new L.LayerGroup();
@@ -72,7 +72,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
       fillOpacity: 1,
       fillColor: getColor(feature.properties.mag),
       color: "#000000",
-      radius: getRadius(feature.properties.mag),
+      radius: findRadius(feature.properties.mag),
       stroke: true,
       weight: 0.5
     };
@@ -100,7 +100,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
 
   // This function determines the radius of the earthquake marker based on its magnitude.
   // Earthquakes with a magnitude of 0 were being plotted with the wrong radius.
-  function getRadius(magnitude) {
+  function findRadius(magnitude) {
     if (magnitude === 0) {
       return 1;
     }
@@ -143,7 +143,7 @@ function styleInfo(feature) {
     fillOpacity: 1,
     fillColor: getColor(feature.properties.mag),
     color: "#000000",
-    radius: getRadius(feature.properties.mag),
+    radius: findRadius(feature.properties.mag),
     stroke: true,
     weight: 0.5
   };
@@ -155,16 +155,16 @@ function styleInfo(feature) {
 
 function getColor(magnitude) {
   if (magnitude > 5) {
-    return "#ea2c2c";
+    return "#E69138";
   }
   if (magnitude > 4) {
-    return "#ea822c";
+    return "#F1C232";
   }
-  return "#eecc00";
+  return "#6FA8DC";
 }
   
 // 6. Use the function that determines the radius of the earthquake marker based on its magnitude.
-function getRadius(magnitude) {
+function findRadius(magnitude) {
   if (magnitude === 0) {
     return 1;
   }
@@ -227,6 +227,7 @@ legend.onAdd = function() {
   ];
 
 // Looping through our intervals to generate a label with a colored square for each interval.
+
   for (var i = 0; i < magnitudes.length; i++) {
     console.log(colors[i]);
     div.innerHTML +=
@@ -241,9 +242,13 @@ legend.onAdd = function() {
 
 
   // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
+
+
   d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(function(plateData) {
       // Adding our geoJSON data, along with style information, to the tectonicplates
       // layer.
+
+
       L.geoJson(plateData, {
         color: "#ff6500",
         weight: 2
@@ -254,3 +259,4 @@ legend.onAdd = function() {
       tectonicPlates.addTo(map);
     
   });
+})
