@@ -37,7 +37,7 @@ let map = L.map('mapid', {
 let baseMaps = {
   "Streets": streets,
   "Satellite": satelliteStreets,
-  "Dark": dark,
+  //"Dark": dark,
 };
 
 
@@ -218,12 +218,12 @@ legend.onAdd = function() {
 
   const magnitudes = [0, 1, 2, 3, 4, 5];
   const colors = [
-    "#98ee00",
-    "#d4ee00",
-    "#eecc00",
-    "#ee9c00",
-    "#ea822c",
-    "#ea2c2c"
+    "#fff517",
+    "#94ff17",
+    "#199634",
+    "#689eea",
+    "#6c68ea",
+    "#d2102d"
   ];
 
 // Looping through our intervals to generate a label with a colored square for each interval.
